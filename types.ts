@@ -110,14 +110,18 @@ let testAnyArray: any[];
 testAnyArray = [1, "two", false, []];
 
 /**
- * TYPE ALIASES
+ * Default value options
  */
-type UserType = {
+type UserType2 = {
   username: string;
   age: number;
-  phone?: string; // optional key
+  phone?: string;
+  theme: "dark" | "light"; // default value options
 };
 
-let betterFunc = (user: UserType) => {
-  console.log(user.username);
+const userWithTheme: UserType2 = {
+  username: "john",
+  age: 43,
+  // theme:"pink", // error: Type '"pink"' is not assignable to type '"dark" | "light"'.
+  theme: "dark",
 };

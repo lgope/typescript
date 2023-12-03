@@ -35,3 +35,23 @@ sum(2, 3);
 const func = (user: { username: string; age: number; phone?: string }) => {
   console.log(user.username);
 };
+
+/**
+ * TYPE ALIASES
+ */
+type UserType = {
+  username: string;
+  age: number;
+  phone?: string; // optional key
+};
+
+let betterFunc = (user: UserType) => {
+  console.log(user.username);
+};
+
+//FUNCTION SIGNATURES
+type myFunc = (a: number, b: string) => void;
+
+const write: myFunc = (num, str) => {
+  console.log(num + " times " + str);
+};
