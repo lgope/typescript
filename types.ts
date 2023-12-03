@@ -108,3 +108,16 @@ testAny = {};
 let testAnyArray: any[];
 
 testAnyArray = [1, "two", false, []];
+
+/**
+ * TYPE ALIASES
+ */
+type UserType = {
+  username: string;
+  age: number;
+  phone?: string; // optional key
+};
+
+let betterFunc = (user: UserType) => {
+  console.log(user.username);
+};
