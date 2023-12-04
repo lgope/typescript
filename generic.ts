@@ -59,3 +59,31 @@ const testPost4: IPostEvenBetter<ICategory> = {
   desc: "post desc",
   extra: [{ id: 1, title: "cat" }],
 };
+
+// Example
+interface Queue<T> {
+  data: T[];
+  push: (t: T) => void;
+  pop: () => T | undefined;
+}
+
+interface Monkey {
+  name: string;
+  color: string;
+}
+
+class MonkeyQueue implements Queue<Monkey> {
+  data: Monkey[];
+
+  constructor() {
+    this.data = [];
+  }
+
+  push(t: Monkey): void {
+    this.data.push(t);
+  }
+
+  pop(): Monkey | undefined {
+    return this.data.shift();
+  }
+}
