@@ -87,3 +87,36 @@ class MonkeyQueue implements Queue<Monkey> {
     return this.data.shift();
   }
 }
+
+// Generic Class
+class KeyValuePair<T, U> {
+  private key: T;
+  private val: U;
+
+  setKeyValue(key: T, val: U): void {
+    this.key = key;
+    this.val = val;
+  }
+
+  display(): void {
+    console.log(`Key = ${this.key}, value = ${this.val}`);
+  }
+}
+
+let kvp = new KeyValuePair<number, string>();
+kvp.setKeyValue(1, "Jhon");
+kvp.display(); //Output: Key = 1, value = Jhon
+
+// Extending Generic
+const greeting = <T extends { name: string }>(obj: T) => {};
+
+greeting({ name: "Jhon", age: 28 });
+
+// In T, must contain { name: string }. Extra properties are also acceptable.
+
+function func<T extends {}>(param: T) {}
+
+func(8);
+// func(null); // error: Argument of type 'null' is not assignable to parameter of type '{}'
+// func(undefined); // error : Argument of type 'undefined' is not assignable to parameter of type '{}'
+// T extends {} accepts anything but null and undefined.
