@@ -125,3 +125,107 @@ const userWithTheme: UserType2 = {
   // theme:"pink", // error: Type '"pink"' is not assignable to type '"dark" | "light"'.
   theme: "dark",
 };
+
+/**
+ * Explicit Types
+ * specify the types of the variables
+ */
+
+const age: number = 18;
+
+// function
+function sayHello(name: string): string {
+  return `Hello ${name}`;
+}
+
+// arrow function
+const profile = (name: string, age: number): string => {
+  return `${name}'s age is ${age}`;
+};
+
+// class
+class Greeter {
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  sayHello(): string {
+    return `Hello ${this.name}`;
+  }
+}
+
+/**
+ * Structural Types
+ * Nominal typing:
+ */
+
+class Fruit {}
+
+class Mango extends Fruit {}
+
+class GreenMango extends Mango {}
+
+// Valid, through subtypes
+const greenMangoFruit: Fruit = new GreenMango();
+
+// Valid, through subtypes
+const mango: GreenMango = new Mango();
+
+// Valid, explicitly defined as a GreenMango
+const greenMango: GreenMango = new GreenMango();
+
+/**
+ * Duck typing
+ * If it looks like a Duck and it quacks like a Duck. It must be a Duck.
+ */
+
+interface Comment {
+  id: number;
+  content: string;
+}
+
+interface Reply {
+  id: number;
+  content: string;
+  commentId: number;
+}
+
+const comment: Comment = {
+  id: 1,
+  content: "this is a comment",
+};
+
+const reply: Reply = {
+  id: 2,
+  content: "this is a reply",
+  commentId: 1,
+};
+
+function postComment(comment: Comment) {
+  // Do something
+}
+
+// Perfect - exact match
+postComment(comment);
+
+// Ok - extra information still alright
+postComment(reply);
+
+// Error - missing information
+// Type '{ id: number; }' is missing the following properties from
+// type 'Comment': content
+postComment({ id: 1 });
+
+/**
+ * Ambient Types
+ */
+
+// $ is global variable
+declare var $: {
+  (selector: string): any;
+};
+
+$(".cls").show(); // right
+// $(123).show(); // Error
